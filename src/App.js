@@ -1,11 +1,16 @@
 import React from "react";
-import Header from "./components/Header";
+
+import Routes from "./routes";
+import { UserProvider } from "./contexts/user";
+import { SnackbarProvider } from "./contexts/snackbar";
 
 function App() {
   return (
-    <>
-      <Header />
-    </>
+    <UserProvider>
+      <SnackbarProvider>
+        <Routes />
+      </SnackbarProvider>
+    </UserProvider>
   );
 }
 
