@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -15,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  navLink: {
+    color: "white",
+  },
 }));
 
 export default function ButtonAppBar() {
@@ -27,9 +31,21 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             CMS
           </Typography>
-          <Button color="inherit">Contents</Button>
-          <Button color="inherit">Users</Button>
-          <Button color="inherit">Settings</Button>
+          <Button color="inherit">
+            <NavLink to="/contents" className={classes.navLink}>
+              Contents
+            </NavLink>
+          </Button>
+          <Button color="inherit">
+            <NavLink to="/users" className={classes.navLink}>
+              Users
+            </NavLink>
+          </Button>
+          <Button color="inherit">
+            <NavLink to="settings" className={classes.navLink}>
+              Settings
+            </NavLink>
+          </Button>
         </Toolbar>
       </AppBar>
     </div>

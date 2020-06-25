@@ -5,6 +5,7 @@ import { Redirect } from "react-router-dom";
 
 function Route({ component: Component, isPublic, ...props }) {
   const { user } = useUser();
+  if (user === null) return null;
 
   if (!user?.token && !isPublic) {
     return <Redirect to="/login"></Redirect>;

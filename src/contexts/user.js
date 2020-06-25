@@ -3,15 +3,16 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
 
-  console.log(user);
   useEffect(() => {
     const userLocal = localStorage.getItem("@cms:user");
 
     if (userLocal) {
-      setUser(JSON.parse(userLocal));
+      return setUser(JSON.parse(userLocal));
     }
+
+    setUser({});
   }, []);
 
   useEffect(() => {
