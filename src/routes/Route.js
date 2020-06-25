@@ -14,10 +14,14 @@ function Route({ component: Component, isPublic, ...props }) {
     return <Redirect to="/"></Redirect>;
   }
 
+  if (isPublic) {
+    return <Component />;
+  }
+
   return (
     <>
-      <Header></Header>
-      <Component></Component>
+      <Header />
+      <Component />
     </>
   );
 }
