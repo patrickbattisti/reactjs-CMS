@@ -19,8 +19,13 @@ export const UserProvider = ({ children }) => {
     if (user?.token) localStorage.setItem("@cms:user", JSON.stringify(user));
   }, [user]);
 
+  const onLogout = () => {
+    localStorage.removeItem("@cms:user");
+    setUser({});
+  };
+
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, setUser, onLogout }}>
       {children}
     </UserContext.Provider>
   );

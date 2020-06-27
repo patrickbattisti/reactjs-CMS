@@ -5,6 +5,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import Avatar from "./components/Avatar";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,6 +47,8 @@ export default function ButtonAppBar() {
               Roles
             </NavLink>
           </Button>
+
+          <Avatar />
         </Toolbar>
       </AppBar>
     </div>
