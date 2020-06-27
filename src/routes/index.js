@@ -5,7 +5,7 @@ import Route from "./Route";
 import Login from "../pages/Login";
 import Users from "../pages/Users";
 import Contents from "../pages/Contents";
-import Settings from "../pages/Settings";
+import Roles from "../pages/Roles";
 
 export default () => {
   return (
@@ -14,7 +14,7 @@ export default () => {
         <Route path="/login" component={Login} isPublic></Route>
         <Route path="/contents" component={Contents}></Route>
         <Route path="/users" component={Users}></Route>
-        <Route path="/settings" component={Settings}></Route>
+        <Route path="/roles" component={Roles}></Route>
       </Switch>
     </Router>
   );

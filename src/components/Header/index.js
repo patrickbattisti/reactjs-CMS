@@ -42,8 +42,8 @@ export default function ButtonAppBar() {
             </NavLink>
           </Button>
           <Button color="inherit">
-            <NavLink to="settings" className={classes.navLink}>
-              Settings
+            <NavLink to="roles" className={classes.navLink}>
+              Roles
             </NavLink>
           </Button>
         </Toolbar>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import Actions from "../../../../components/Table/components/Actions";
@@ -7,7 +7,6 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
-import api from "../../../../services/api";
 
 const useStyles = makeStyles({
   root: {
@@ -25,25 +24,12 @@ const useStyles = makeStyles({
 
 const Form = ({ onClose, confirmTitle, onSubmit, defaultValues, loading }) => {
   const classes = useStyles();
-  const [roles, setRoles] = useState([]);
   const { errors, register, setValue, handleSubmit } = useForm({
     defaultValues,
   });
 
   useEffect(() => {
-    const fetch = async () => {
-      try {
-        const response = await api.get("roles");
-
-        setRoles(response.data);
-      } catch (e) {}
-    };
-
-    fetch();
-  }, []);
-
-  useEffect(() => {
-    register({ name: "role" }, { required: true });
+    register({ name: "level" }, { required: true });
   }, [register]);
 
   return (
@@ -54,53 +40,27 @@ const Form = ({ onClose, confirmTitle, onSubmit, defaultValues, loading }) => {
     >
       <TextField
         inputRef={register({ required: true })}
-        error={errors.firstName}
-        name="firstName"
-        label="First Name"
+        error={errors.name}
+        name="name"
+        label="Name"
         variant="outlined"
       />
-      <TextField
-        inputRef={register({ required: true })}
-        error={errors.lastName}
-        name="lastName"
-        label="Last Name"
-        variant="outlined"
-      />
-      <TextField
-        inputRef={register({ required: true })}
-        error={errors.email}
-        name="email"
-        label="Email"
-        variant="outlined"
-      />
-      <TextField
-        inputRef={register({ required: true })}
-        error={errors.password}
-        name="password"
-        label="Password"
-        variant="outlined"
-        type="password"
-      />
-
       <FormControl variant="outlined" className={classes.select}>
-        <InputLabel id="demo-simple-select-outlined-label">Role</InputLabel>
+        <InputLabel id="demo-simple-select-outlined-label">Level</InputLabel>
         <Select
-          error={errors.role}
-          defaultValue={defaultValues?.role?._id}
+          error={errors.level}
+          defaultValue={defaultValues?.level}
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
-          label="Role"
+          label="Level"
         >
-          {/* <MenuItem value="">
-            <em>None</em>
-          </MenuItem> */}
-          {roles.map((role) => (
+          {[1, 2, 3, 4, 5].map((level) => (
             <MenuItem
-              key={role._id}
-              value={role._id}
-              onClick={() => setValue("role", role._id)}
+              key={level}
+              value={level}
+              onClick={() => setValue("level", level)}
             >
-              {role.name}
+              {level}
             </MenuItem>
           ))}
         </Select>
