@@ -19,6 +19,7 @@ const useStyles = makeStyles({
   message: {
     color: "#777",
     marginTop: 5,
+    fontSize: 18,
   },
 });
 
@@ -31,11 +32,7 @@ function EmptyMessage({ rowName }) {
         <div className={classes.root}>
           <LineWeightIcon style={{ fontSize: 45, color: "#777" }} />
 
-          <Typography
-            color="textPrimary"
-            variant="h6"
-            className={classes.message}
-          >
+          <Typography variant="h6" className={classes.message}>
             No Data
           </Typography>
         </div>

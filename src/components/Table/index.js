@@ -16,6 +16,7 @@ import IconButton from "@material-ui/core/IconButton";
 
 import ConfirmDelete from "./components/ConfirmDelete";
 import EmptyMessage from "./components/EmptyMessage";
+import Loading from "./components/Loading";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -175,7 +176,7 @@ export default function ({
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows
+              {(rows || [])
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => {
                   return (
@@ -189,14 +190,15 @@ export default function ({
                     </StyledTableRow>
                   );
                 })}
-              {rows.length === 0 && <EmptyMessage />}
+              {rows?.length === 0 && <EmptyMessage />}
+              {rows === null && <Loading />}
             </TableBody>
           </Table>
         </TableContainer>
         <TablePagination
           rowsPerPageOptions={[10, 25, 100]}
           component="div"
-          count={rows.length}
+          count={rows?.length || 0}
           rowsPerPage={rowsPerPage}
           page={page}
           onChangePage={handleChangePage}

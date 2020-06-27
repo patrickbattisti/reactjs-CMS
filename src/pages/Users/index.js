@@ -14,7 +14,7 @@ export default () => {
   const { showSuccess, showError } = useSnackbar();
   const [refresh, setRefresh] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [rows, setRows] = useState([]);
+  const [rows, setRows] = useState(null);
 
   const [updateRow, setUpdateRow] = useState({
     open: false,
