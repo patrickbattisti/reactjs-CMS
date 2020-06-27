@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 import { Typography } from "@material-ui/core";
 
@@ -13,7 +14,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Form({ open, onClose, title, Form }) {
+export default function ({ open, onClose, title, loading, children: Form }) {
   const classes = useStyles();
 
   const toggleDrawer = () => (event) => {
@@ -29,11 +30,12 @@ export default function Form({ open, onClose, title, Form }) {
 
   return (
     <Drawer anchor={"right"} open={open} onClose={toggleDrawer()}>
+      {loading && <LinearProgress />}
       <div className={classes.container}>
         <Typography color="textPrimary" variant="h5" className={classes.title}>
           {title}
         </Typography>
-        <Form />
+        {Form}
       </div>
     </Drawer>
   );

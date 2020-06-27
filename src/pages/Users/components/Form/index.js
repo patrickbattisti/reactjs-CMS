@@ -23,13 +23,8 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Form({
-  onClose,
-  onConfirm,
-  confirmTitle,
-  onSubmit,
-  defaultValues,
-}) {
+const Form = ({ onClose, confirmTitle, onSubmit, defaultValues, loading }) => {
+  const classes = useStyles();
   const [roles, setRoles] = useState([]);
   const { errors, register, handleSubmit } = useForm({
     defaultValues,
@@ -46,8 +41,6 @@ export default function Form({
 
     fetch();
   }, []);
-
-  const classes = useStyles();
 
   return (
     <form
@@ -112,7 +105,9 @@ export default function Form({
         </Select>
       </FormControl>
 
-      <Actions {...{ onClose, onConfirm, confirmTitle }} />
+      <Actions {...{ onClose, confirmTitle }} loading={loading} />
     </form>
   );
-}
+};
+
+export default Form;

@@ -12,10 +12,10 @@ import { Typography, Fab } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import AddIcon from "@material-ui/icons/Add";
-import ConfirmDelete from "./components/ConfirmDelete";
-import Form from "./components/Form";
-
 import IconButton from "@material-ui/core/IconButton";
+
+import ConfirmDelete from "./components/ConfirmDelete";
+import EmptyMessage from "./components/EmptyMessage";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,12 +53,8 @@ export default function ({
   rows,
   model,
   rowName,
-  FormCreate,
-  FormUpdate,
   onDelete,
-  updateRow,
   setUpdateRow,
-  createRow,
   setCreateRow,
 }) {
   const classes = useStyles();
@@ -71,8 +67,6 @@ export default function ({
   });
 
   const onCloseDelete = () => setDeleteRow({ open: false });
-  const onCloseUpdate = () => setUpdateRow({ open: false });
-  const onCloseCreate = () => setCreateRow({ open: false });
 
   const onOpenDelete = (row) => {
     setDeleteRow({ open: true, row });
@@ -195,6 +189,7 @@ export default function ({
                     </StyledTableRow>
                   );
                 })}
+              {rows.length === 0 && <EmptyMessage />}
             </TableBody>
           </Table>
         </TableContainer>
@@ -214,41 +209,6 @@ export default function ({
           onClose: onCloseDelete,
           onDelete: _onDelete,
           rowName,
-        }}
-      />
-
-      <Form
-        {...{
-          open: updateRow.open,
-          onClose: onCloseUpdate,
-          title: `Edit ${rowName}`,
-          rowName,
-          Form: () => (
-            <FormUpdate
-              {...{
-                defaultValues: updateRow.row,
-                confirmTitle: "Edit",
-                onClose: onCloseUpdate,
-              }}
-            />
-          ),
-        }}
-      />
-
-      <Form
-        {...{
-          open: createRow.open,
-          onClose: onCloseCreate,
-          title: `Create ${rowName}`,
-          rowName,
-          Form: () => (
-            <FormCreate
-              {...{
-                confirmTitle: "Create",
-                onClose: onCloseCreate,
-              }}
-            />
-          ),
         }}
       />
     </div>
