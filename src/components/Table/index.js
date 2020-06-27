@@ -41,6 +41,11 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "space-between",
   },
+  column: {
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+  },
 }));
 
 const StyledTableRow = withStyles({
@@ -100,7 +105,8 @@ export default function ({
       <TableCell
         key={column.id}
         align={column.align}
-        style={{ minWidth: column.minWidth }}
+        className={classes.tableCell}
+        style={{ minWidth: column.minWidth, maxWidth: column.maxWidth }}
       >
         {column.label}
       </TableCell>
@@ -135,7 +141,11 @@ export default function ({
         );
       }
 
-      return value;
+      return (
+        <div className={classes.column} style={{ maxWidth: column.maxWidth }}>
+          {value}
+        </div>
+      );
     };
 
     return columns.map((column) => {

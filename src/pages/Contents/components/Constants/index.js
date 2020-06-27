@@ -1,14 +1,10 @@
 import { format } from "date-fns";
 
-export const MODEL = "Users";
-export const ROW_NAME = "User";
+export const MODEL = "Contents";
+export const ROW_NAME = "Content";
 export const COLUMNS = [
-  { id: "firstName", label: "First Name" },
-  { id: "lastName", label: "Last Name" },
-  {
-    id: "email",
-    label: "Email",
-  },
+  { id: "title", label: "Title", maxWidth: 300 },
+  { id: "description", label: "Description", maxWidth: 300 },
   {
     id: "role",
     label: "Role",
