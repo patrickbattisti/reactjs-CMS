@@ -8,6 +8,7 @@ import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import api from "../../../../services/api";
+import InputFile from "../../../../components/InputFile";
 
 const useStyles = makeStyles({
   root: {
@@ -44,6 +45,7 @@ const Form = ({ onClose, confirmTitle, onSubmit, defaultValues, loading }) => {
 
   useEffect(() => {
     register({ name: "role" }, { required: true });
+    register({ name: "background" }, { required: true });
   }, [register]);
 
   return (
@@ -54,14 +56,14 @@ const Form = ({ onClose, confirmTitle, onSubmit, defaultValues, loading }) => {
     >
       <TextField
         inputRef={register({ required: true })}
-        error={errors.title}
+        error={!!errors.title}
         name="title"
         label="Title"
         variant="outlined"
       />
       <TextField
         inputRef={register({ required: true })}
-        error={errors.description}
+        error={!!errors.description}
         name="description"
         label="Description"
         multiline
@@ -72,7 +74,7 @@ const Form = ({ onClose, confirmTitle, onSubmit, defaultValues, loading }) => {
       <FormControl variant="outlined" className={classes.select}>
         <InputLabel id="demo-simple-select-outlined-label">Role</InputLabel>
         <Select
-          error={errors.role}
+          error={!!errors.role}
           defaultValue={defaultValues?.role?._id}
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
@@ -89,6 +91,14 @@ const Form = ({ onClose, confirmTitle, onSubmit, defaultValues, loading }) => {
           ))}
         </Select>
       </FormControl>
+
+      <InputFile
+        error={!!errors.background}
+        placeholder="Background Image"
+        defaultValue={defaultValues?.background}
+        accept="image/*"
+        setValue={(imageId) => setValue("background", imageId)}
+      />
 
       <Actions {...{ onClose, confirmTitle }} loading={loading} />
     </form>

@@ -1,3 +1,4 @@
+import React from "react";
 import { format } from "date-fns";
 
 export const MODEL = "Contents";
@@ -9,6 +10,23 @@ export const COLUMNS = [
     id: "role",
     label: "Role",
     format: (value) => value?.name,
+  },
+  {
+    id: "background",
+    label: "Background Image",
+    format: (value) => {
+      if (!value?.name) {
+        return "";
+      }
+
+      const [_, ...fileName] = value?.name?.split(".").reverse();
+
+      return (
+        <a href={value.url} target="_blank">
+          {fileName.join(".")}
+        </a>
+      );
+    },
   },
   {
     id: "createdAt",

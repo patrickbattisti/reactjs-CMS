@@ -40,7 +40,7 @@ const Form = ({ onClose, confirmTitle, onSubmit, defaultValues, loading }) => {
     >
       <TextField
         inputRef={register({ required: true })}
-        error={errors.name}
+        error={!!errors.name}
         name="name"
         label="Name"
         variant="outlined"
@@ -48,7 +48,7 @@ const Form = ({ onClose, confirmTitle, onSubmit, defaultValues, loading }) => {
       <FormControl variant="outlined" className={classes.select}>
         <InputLabel id="demo-simple-select-outlined-label">Level</InputLabel>
         <Select
-          error={errors.level}
+          error={!!errors.level}
           defaultValue={defaultValues?.level}
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"

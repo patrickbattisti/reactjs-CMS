@@ -194,7 +194,7 @@ export default function ({
                       hover
                       role="checkbox"
                       tabIndex={-1}
-                      key={row.id}
+                      key={row._id}
                     >
                       <Rows {...{ row }} />
                     </StyledTableRow>

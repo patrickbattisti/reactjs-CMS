@@ -54,28 +54,28 @@ const Form = ({ onClose, confirmTitle, onSubmit, defaultValues, loading }) => {
     >
       <TextField
         inputRef={register({ required: true })}
-        error={errors.firstName}
+        error={!!errors.firstName}
         name="firstName"
         label="First Name"
         variant="outlined"
       />
       <TextField
         inputRef={register({ required: true })}
-        error={errors.lastName}
+        error={!!errors.lastName}
         name="lastName"
         label="Last Name"
         variant="outlined"
       />
       <TextField
         inputRef={register({ required: true })}
-        error={errors.email}
+        error={!!errors.email}
         name="email"
         label="Email"
         variant="outlined"
       />
       <TextField
         inputRef={register({ required: true })}
-        error={errors.password}
+        error={!!errors.password}
         name="password"
         label="Password"
         variant="outlined"
@@ -85,7 +85,7 @@ const Form = ({ onClose, confirmTitle, onSubmit, defaultValues, loading }) => {
       <FormControl variant="outlined" className={classes.select}>
         <InputLabel id="demo-simple-select-outlined-label">Role</InputLabel>
         <Select
-          error={errors.role}
+          error={!!errors.role}
           defaultValue={defaultValues?.role?._id}
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
