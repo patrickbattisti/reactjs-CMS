@@ -6,11 +6,7 @@ export const ROW_NAME = "Content";
 export const COLUMNS = [
   { id: "title", label: "Title", maxWidth: 300 },
   { id: "description", label: "Description", maxWidth: 300 },
-  {
-    id: "role",
-    label: "Role",
-    format: (value) => value?.name,
-  },
+  { id: "createdBy", label: "Author", maxWidth: 300 },
   {
     id: "background",
     label: "Background Image",

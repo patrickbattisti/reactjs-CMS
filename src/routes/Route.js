@@ -8,20 +8,20 @@ function Route({ component: Component, isPublic, ...props }) {
   if (user === null) return null;
 
   if (!user?.token && !isPublic) {
-    return <Redirect to="/login"></Redirect>;
-  }
-
-  if (user?.token && isPublic) {
     return <Redirect to="/"></Redirect>;
   }
 
-  if (isPublic) {
+  if (user?.token && props.path === "/login") {
+    return <Redirect to="/contents"></Redirect>;
+  }
+
+  if (isPublic && props.path === "/login") {
     return <Component />;
   }
 
   return (
     <>
-      <Header />
+      <Header showLinks={!isPublic} />
       <Component />
     </>
   );

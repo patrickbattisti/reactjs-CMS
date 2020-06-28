@@ -6,6 +6,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Avatar from "./components/Avatar";
+import { useUser } from "../../contexts/user";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,7 +23,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ButtonAppBar() {
+export default function Heder() {
+  const { user } = useUser();
   const classes = useStyles();
 
   return (
@@ -30,25 +32,37 @@ export default function ButtonAppBar() {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            CMS
+            <NavLink to="/" className={classes.navLink}>
+              CMS
+            </NavLink>
           </Typography>
-          <Button color="inherit">
-            <NavLink to="/contents" className={classes.navLink}>
-              Contents
-            </NavLink>
-          </Button>
-          <Button color="inherit">
-            <NavLink to="/users" className={classes.navLink}>
-              Users
-            </NavLink>
-          </Button>
-          <Button color="inherit">
-            <NavLink to="roles" className={classes.navLink}>
-              Roles
-            </NavLink>
-          </Button>
+          {user?.token ? (
+            <>
+              <Button color="inherit">
+                <NavLink to="/contents" className={classes.navLink}>
+                  Contents
+                </NavLink>
+              </Button>
+              <Button color="inherit">
+                <NavLink to="/users" className={classes.navLink}>
+                  Users
+                </NavLink>
+              </Button>
+              <Button color="inherit">
+                <NavLink to="/roles" className={classes.navLink}>
+                  Roles
+                </NavLink>
+              </Button>
 
-          <Avatar />
+              <Avatar />
+            </>
+          ) : (
+            <Button color="inherit">
+              <NavLink to="/login" className={classes.navLink}>
+                Login
+              </NavLink>
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </div>
