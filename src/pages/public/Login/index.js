@@ -9,9 +9,9 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
-import api from "../../services/api";
-import { useUser } from "../../contexts/user";
-import { useSnackbar } from "../../contexts/snackbar";
+import api from "../../../services/api";
+import { useUser } from "../../../contexts/user";
+import { useSnackbar } from "../../../contexts/snackbar";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

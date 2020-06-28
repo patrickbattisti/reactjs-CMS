@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
-import Actions from "../../../../components/Table/components/Actions";
 import { useForm } from "react-hook-form";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
-import api from "../../../../services/api";
+
+import Actions from "../../../../../components/Table/components/Actions";
+import api from "../../../../../services/api";
+import InputFile from "../../../../../components/InputFile";
 
 const useStyles = makeStyles({
   root: {
@@ -44,6 +46,7 @@ const Form = ({ onClose, confirmTitle, onSubmit, defaultValues, loading }) => {
 
   useEffect(() => {
     register({ name: "role" }, { required: true });
+    register({ name: "background" }, { required: true });
   }, [register]);
 
   return (
@@ -54,32 +57,19 @@ const Form = ({ onClose, confirmTitle, onSubmit, defaultValues, loading }) => {
     >
       <TextField
         inputRef={register({ required: true })}
-        error={!!errors.firstName}
-        name="firstName"
-        label="First Name"
+        error={!!errors.title}
+        name="title"
+        label="Title"
         variant="outlined"
       />
       <TextField
         inputRef={register({ required: true })}
-        error={!!errors.lastName}
-        name="lastName"
-        label="Last Name"
+        error={!!errors.description}
+        name="description"
+        label="Description"
+        multiline
+        rows={6}
         variant="outlined"
-      />
-      <TextField
-        inputRef={register({ required: true })}
-        error={!!errors.email}
-        name="email"
-        label="Email"
-        variant="outlined"
-      />
-      <TextField
-        inputRef={register({ required: true })}
-        error={!!errors.password}
-        name="password"
-        label="Password"
-        variant="outlined"
-        type="password"
       />
 
       <FormControl variant="outlined" className={classes.select}>
@@ -91,9 +81,6 @@ const Form = ({ onClose, confirmTitle, onSubmit, defaultValues, loading }) => {
           id="demo-simple-select-outlined"
           label="Role"
         >
-          {/* <MenuItem value="">
-            <em>None</em>
-          </MenuItem> */}
           {roles.map((role) => (
             <MenuItem
               key={role._id}
@@ -105,6 +92,14 @@ const Form = ({ onClose, confirmTitle, onSubmit, defaultValues, loading }) => {
           ))}
         </Select>
       </FormControl>
+
+      <InputFile
+        error={!!errors.background}
+        placeholder="Background Image"
+        defaultValue={defaultValues?.background}
+        accept="image/*"
+        setValue={(imageId) => setValue("background", imageId)}
+      />
 
       <Actions {...{ onClose, confirmTitle }} loading={loading} />
     </form>

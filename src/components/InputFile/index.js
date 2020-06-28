@@ -113,7 +113,7 @@ export default function InputFile({
         type="file"
         onChange={onFileUpload}
         className={classes.input}
-        accept1={accept}
+        accept={accept}
       />
     </div>
   );

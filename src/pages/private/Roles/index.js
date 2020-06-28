@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-import Table from "../../components/Table";
-import { useSnackbar } from "../../contexts/snackbar";
+import Table from "../../../components/Table";
+import { useSnackbar } from "../../../contexts/snackbar";
 
 import ModelForm from "./components/Form";
-import Drawer from "../../components/Drawer";
+import Drawer from "../../../components/Drawer";
 
-import api from "../../services/api";
+import api from "../../../services/api";
 
 import { MODEL, ROW_NAME, COLUMNS } from "./components/Constants";
 

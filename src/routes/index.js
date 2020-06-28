@@ -2,10 +2,10 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 
 import Route from "./Route";
-import Login from "../pages/Login";
-import Users from "../pages/Users";
-import Contents from "../pages/Contents";
-import Roles from "../pages/Roles";
+import Login from "../pages/public/Login";
+import Users from "../pages/private/Users";
+import Contents from "../pages/private/Contents";
+import Roles from "../pages/private/Roles";
 
 export default () => {
   return (

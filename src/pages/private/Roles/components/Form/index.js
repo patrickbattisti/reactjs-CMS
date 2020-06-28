@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
-import Actions from "../../../../components/Table/components/Actions";
 import { useForm } from "react-hook-form";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
+
+import Actions from "../../../../../components/Table/components/Actions";
 
 const useStyles = makeStyles({
   root: {
