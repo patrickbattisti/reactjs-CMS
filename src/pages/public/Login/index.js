@@ -51,7 +51,7 @@ export default function SignIn() {
         return showError("Passwrod empty.");
       }
 
-      const user = await api.post("/auth", {
+      const user = await api.post("/sessions", {
         email,
         password,
       });

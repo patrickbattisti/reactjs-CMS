@@ -54,7 +54,7 @@ export default function Contents() {
   useEffect(() => {
     const fetch = async () => {
       try {
-        const response = await api.get("contents");
+        const response = await api.get("public/contents");
 
         setContents(response.data);
       } catch (e) {

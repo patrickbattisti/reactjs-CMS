@@ -7,6 +7,7 @@ import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 
+import { useUser } from "../../../../../contexts/user";
 import Actions from "../../../../../components/Table/components/Actions";
 
 const useStyles = makeStyles({
@@ -24,6 +25,9 @@ const useStyles = makeStyles({
 });
 
 const Form = ({ onClose, confirmTitle, onSubmit, defaultValues, loading }) => {
+  const {
+    user: { user },
+  } = useUser();
   const classes = useStyles();
   const { errors, register, setValue, handleSubmit } = useForm({
     defaultValues,
@@ -55,13 +59,13 @@ const Form = ({ onClose, confirmTitle, onSubmit, defaultValues, loading }) => {
           id="demo-simple-select-outlined"
           label="Level"
         >
-          {[1, 2, 3, 4, 5].map((level) => (
+          {[...new Array(user.role)].map((_, level) => (
             <MenuItem
               key={level}
-              value={level}
-              onClick={() => setValue("level", level)}
+              value={level + 1}
+              onClick={() => setValue("level", level + 1)}
             >
-              {level}
+              {level + 1}
             </MenuItem>
           ))}
         </Select>

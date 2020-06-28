@@ -79,6 +79,7 @@ export default function ({
   };
 
   const onOpenUpdate = (row) => {
+    console.log(row);
     setUpdateRow({ open: true, row });
   };
 
